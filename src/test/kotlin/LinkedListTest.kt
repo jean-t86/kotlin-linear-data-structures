@@ -1,4 +1,5 @@
 import org.junit.Test
+import java.time.LocalDate
 import kotlin.test.assertEquals
 
 class LinkedListTest {
@@ -28,5 +29,20 @@ class LinkedListTest {
 
         linkedList.setHead(node)
         assertEquals(1, linkedList.size)
+    }
+
+    @Test
+    fun `null head returns null`() {
+        assertEquals(null, LinkedList<Int>().getHead())
+    }
+
+    @Test
+    fun `getHead returns the head of the LinkedList`() {
+        val node = Node(LocalDate.now())
+        val linkedList = LinkedList<LocalDate>(node)
+
+        val actual = linkedList.getHead()
+
+        assertEquals(node, actual)
     }
 }

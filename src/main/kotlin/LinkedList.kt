@@ -19,4 +19,6 @@ class LinkedList<T>(private var head: Node<T>? = null) {
             head?.let { it.next = currentHead }
         }
     }
+
+    fun getHead() = head
 }
