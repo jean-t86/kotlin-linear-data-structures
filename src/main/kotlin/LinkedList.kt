@@ -14,11 +14,24 @@ class LinkedList<T>(private var head: Node<T>? = null) {
     fun setHead(node: Node<T>) {
         val currentHead = head
         head = node
-        size++
         if (currentHead != null) {
             head?.let { it.next = currentHead }
         }
+        size++
     }
 
     fun getHead() = head
+
+    fun setTail(node: Node<T>) {
+        var tail = head
+        if (tail == null) {
+            head = node
+        } else {
+            while (tail?.next != null) {
+                tail = tail.next
+            }
+            tail?.next = node
+        }
+        size++
+    }
 }

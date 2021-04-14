@@ -45,4 +45,34 @@ class LinkedListTest {
 
         assertEquals(node, actual)
     }
+
+    @Test
+    fun `setTail on an empty list sets the node to head`() {
+        val tail = Node(24)
+        val linkedList = LinkedList<Int>()
+
+        assertEquals(null, linkedList.getHead())
+        linkedList.setTail(tail)
+
+        assertEquals(tail, linkedList.getHead())
+    }
+
+    @Test
+    fun `setTail called with list having exactly 1 item, that is the list head`() {
+        val linkedList = LinkedList(Node('A'))
+        assertEquals(1, linkedList.size)
+
+        linkedList.setTail(Node('Z'))
+        assertEquals(2, linkedList.size)
+    }
+
+    @Test
+    fun `setTail with list having two items should have size 3`() {
+        val linkedList = LinkedList(Node('B'))
+        linkedList.setHead(Node('B'))
+
+        linkedList.setTail(Node('Z'))
+
+        assertEquals(3, linkedList.size)
+    }
 }
