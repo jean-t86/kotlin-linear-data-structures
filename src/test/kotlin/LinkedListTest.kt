@@ -132,4 +132,24 @@ class LinkedListTest {
         assertEquals('B',actual)
         assertEquals(1, linkedList.size)
     }
+
+    @Test
+    fun `getPrintableList returns head value tail header is 10`() {
+        val linkedList = LinkedList(10)
+
+        val actual = linkedList.toString()
+
+        assertEquals("<head> 10 <tail>", actual)
+    }
+
+    @Test
+    fun `getPrintableList returns correct string`() {
+        val linkedList = LinkedList('C')
+        linkedList.addToHead('B')
+        linkedList.addToHead('A')
+
+        val actual = linkedList.toString()
+
+        assertEquals("<head> A B C <tail>", actual)
+    }
 }

@@ -43,4 +43,15 @@ class LinkedList<T>(data: T? = null) {
         size--
         return removedHead.value
     }
+
+    override fun toString(): String {
+        var currentNode = head
+        var output = "<head> "
+        while (currentNode != null) {
+            output += "${currentNode.value} "
+            currentNode = currentNode.next
+        }
+        output += "<tail>"
+        return output
+    }
 }
