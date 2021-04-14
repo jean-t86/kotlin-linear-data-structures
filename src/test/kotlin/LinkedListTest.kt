@@ -99,16 +99,37 @@ class LinkedListTest {
         assertEquals(0, linkedList.size)
     }
 
-//    @Test
-//    fun `remove head by settting it to null in a LinkedList with only one node`() {
-//        val linkedList = LinkedList('A')
-//
-//        var head = linkedList.head
-//        assertEquals(head, Node('A'))
-//        assertEquals(1, linkedList.size)
-//
-//        head = linkedList.head
-//        assertEquals(null, head)
-//        assertEquals(0, linkedList.size)
-//    }
+    @Test
+    fun `removeHead in a LinkedList with only one node should return proper size`() {
+        val linkedList = LinkedList('A')
+
+        assertEquals(1, linkedList.size)
+
+        val actual = linkedList.removeHead()
+
+        assertEquals('A', actual)
+        assertEquals(0, linkedList.size)
+    }
+
+    @Test
+    fun `removeHead in a LinkedList with only one node should have head null`() {
+        val linkedList = LinkedList('A')
+
+        val actual = linkedList.removeHead()
+
+        assertEquals('A', actual)
+        assertEquals(null, linkedList.head)
+        assertEquals(0, linkedList.size)
+    }
+
+    @Test
+    fun `removeHead in a LinkedList with two nodes should properly relink nodes`() {
+        val linkedList = LinkedList('A')
+        linkedList.addToHead('B')
+
+        val actual = linkedList.removeHead()
+
+        assertEquals('B',actual)
+        assertEquals(1, linkedList.size)
+    }
 }
