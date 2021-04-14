@@ -22,12 +22,11 @@ class LinkedListTest {
 
     @Test
     fun `can add head after instantiation without a head`() {
-        val headNode = Node(14)
         val linkedList = LinkedList<Int>()
 
         assertEquals(0, linkedList.size)
 
-        linkedList.head = headNode
+        linkedList.addToHead(14)
         assertEquals(1, linkedList.size)
     }
 
@@ -52,7 +51,7 @@ class LinkedListTest {
         val linkedList = LinkedList<Int>()
 
         assertEquals(null, linkedList.head)
-        linkedList.setTail(24)
+        linkedList.addToTail(24)
 
         assertEquals(tail, linkedList.head)
     }
@@ -62,17 +61,54 @@ class LinkedListTest {
         val linkedList = LinkedList('A')
         assertEquals(1, linkedList.size)
 
-        linkedList.setTail('Z')
+        linkedList.addToTail('Z')
         assertEquals(2, linkedList.size)
     }
 
     @Test
     fun `setTail with list having two items should have size 3`() {
         val linkedList = LinkedList('B')
-        linkedList.head = Node('B')
+        linkedList.addToHead('B')
 
-        linkedList.setTail('Z')
+        linkedList.addToTail('Z')
 
         assertEquals(3, linkedList.size)
     }
+
+    @Test
+    fun `removeHead on an empty LinkedList`() {
+        val linkedList = LinkedList<Int>()
+
+        val actual = linkedList.removeHead()
+
+        assertEquals(null, actual)
+        assertEquals(0, linkedList.size)
+    }
+
+    @Test
+    fun `remove head from LinkedList with only one node`() {
+        val linkedList = LinkedList('A')
+
+        var head = linkedList.head
+        assertEquals(head, Node('A'))
+        assertEquals(1, linkedList.size)
+
+        linkedList.removeHead()
+        head = linkedList.head
+        assertEquals(null, head)
+        assertEquals(0, linkedList.size)
+    }
+
+//    @Test
+//    fun `remove head by settting it to null in a LinkedList with only one node`() {
+//        val linkedList = LinkedList('A')
+//
+//        var head = linkedList.head
+//        assertEquals(head, Node('A'))
+//        assertEquals(1, linkedList.size)
+//
+//        head = linkedList.head
+//        assertEquals(null, head)
+//        assertEquals(0, linkedList.size)
+//    }
 }
