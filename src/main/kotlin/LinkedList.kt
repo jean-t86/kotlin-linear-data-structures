@@ -1,36 +1,35 @@
-class LinkedList<T>(private var head: Node<T>? = null) {
+class LinkedList<T>(data: T? = null) {
+
+    var head: Node<T>? = null
+        set(value) {
+            val currentHead = field
+            field = value
+            if (currentHead != null) {
+                field?.let { it.next = currentHead }
+            }
+            size++
+        }
 
     var size: Int = 0
         private set
 
     init {
-        if (head != null) {
-            size++
+        if (data != null) {
+            head = Node(data)
         }
     }
 
     fun isEmpty() = size == 0
 
-    fun setHead(node: Node<T>) {
-        val currentHead = head
-        head = node
-        if (currentHead != null) {
-            head?.let { it.next = currentHead }
-        }
-        size++
-    }
-
-    fun getHead() = head
-
-    fun setTail(node: Node<T>) {
+    fun setTail(data: T) {
         var tail = head
         if (tail == null) {
-            head = node
+            head = Node(data)
         } else {
             while (tail?.next != null) {
                 tail = tail.next
             }
-            tail?.next = node
+            tail?.next = Node(data)
         }
         size++
     }
