@@ -39,6 +39,26 @@ class LinkedList<T>(data: T? = null) {
         size++
     }
 
+    fun find(data: T): T? {
+        if (head?.data == data) {
+            return data;
+        } else if (tail?.data == data) {
+            return data
+        }
+
+        var current = head
+        var foundData: T? = null
+        while (current?.next != null) {
+            if (current.data == data) {
+                foundData = data
+                break
+            }
+            current = current.next
+        }
+
+        return foundData
+    }
+
     fun deleteHead(): T? {
         val removedHead = head ?: return null
         head = removedHead.next
@@ -48,11 +68,13 @@ class LinkedList<T>(data: T? = null) {
 
     fun delete(data: T): Boolean {
         if (head == null) return false
+
         if (head?.data == data) {
             head = head?.next
             size--
             return true
         }
+
         var current = head
         while (current?.next != null) {
             if (current.next?.data == data) {

@@ -129,7 +129,7 @@ class LinkedListTest {
 
         val actual = linkedList.deleteHead()
 
-        assertEquals('B',actual)
+        assertEquals('B', actual)
         assertEquals(1, linkedList.size)
     }
 
@@ -154,7 +154,7 @@ class LinkedListTest {
     }
 
     @Test
-    fun `deleteWithValue on empty LinkedList`() {
+    fun `delete on empty LinkedList`() {
         val linkedList = LinkedList<Int>()
 
         val actual = linkedList.delete(20)
@@ -163,7 +163,7 @@ class LinkedListTest {
     }
 
     @Test
-    fun `deleteWithValue on LinkedList with one item`() {
+    fun `delete on LinkedList with one item`() {
         val linkedList = LinkedList(40)
 
         val actual = linkedList.delete(40)
@@ -172,7 +172,31 @@ class LinkedListTest {
     }
 
     @Test
-    fun `deleteWithValue on LinkedList with multiple values`() {
+    fun `delete on LinkedList with multiple items`() {
+        val linkedList = LinkedList(40)
+        linkedList.append(10)
+        linkedList.append(20)
+        linkedList.append(300)
+
+        val actual = linkedList.delete(20)
+
+        assertEquals(true, actual)
+    }
+
+    @Test
+    fun `delete on LinkedList with non existent node`() {
+        val linkedList = LinkedList(40)
+        linkedList.append(10)
+        linkedList.append(20)
+        linkedList.append(300)
+
+        val actual = linkedList.delete(30)
+
+        assertEquals(false, actual)
+    }
+
+    @Test
+    fun `delete on LinkedList with multiple values`() {
         val linkedList = LinkedList('A')
         linkedList.append('B')
         linkedList.append('C')
@@ -190,5 +214,59 @@ class LinkedListTest {
         assertEquals(4, linkedList.size)
     }
 
+    @Test
+    fun `find a node which exists in the linked list`() {
+        val linkedList = LinkedList('A')
+        linkedList.append('B')
+        linkedList.append('C')
+        linkedList.append('D')
+        linkedList.append('E')
+        linkedList.append('F')
 
+        val actual = linkedList.find('D')
+
+        assertEquals('D', actual)
+    }
+
+    @Test
+    fun `find a node which does not exist in the linked list`() {
+        val linkedList = LinkedList('A')
+        linkedList.append('B')
+        linkedList.append('C')
+        linkedList.append('D')
+        linkedList.append('E')
+        linkedList.append('F')
+
+        val actual = linkedList.find('G')
+
+        assertEquals(null, actual)
+    }
+
+    @Test
+    fun `find a node which is the head of the linked list`() {
+        val linkedList = LinkedList('A')
+        linkedList.append('B')
+        linkedList.append('C')
+        linkedList.append('D')
+        linkedList.append('E')
+        linkedList.append('F')
+
+        val actual = linkedList.find('A')
+
+        assertEquals('A', actual)
+    }
+
+    @Test
+    fun `find a node which is the tail of the linked list`() {
+        val linkedList = LinkedList('A')
+        linkedList.append('B')
+        linkedList.append('C')
+        linkedList.append('D')
+        linkedList.append('E')
+        linkedList.append('F')
+
+        val actual = linkedList.find('F')
+
+        assertEquals('F', actual)
+    }
 }
