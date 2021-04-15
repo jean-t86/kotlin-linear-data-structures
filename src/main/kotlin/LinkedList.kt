@@ -3,6 +3,9 @@ class LinkedList<T>(data: T? = null) {
     var head: Node<T>? = null
         private set
 
+    var tail: Node<T>? = null
+        private set
+
     var size: Int = 0
         private set
 
@@ -16,11 +19,10 @@ class LinkedList<T>(data: T? = null) {
     fun isEmpty() = size == 0
 
     fun prepend(data: T) {
-        val currentHead = head
-        head = Node(data)
+        head = Node(data, this.head)
         size++
-        if (currentHead != null) {
-            head?.next = currentHead
+        if (tail == null) {
+            tail = head
         }
     }
 
@@ -44,7 +46,7 @@ class LinkedList<T>(data: T? = null) {
         return removedHead.data
     }
 
-    fun deleteWithValue(data: T) : Boolean {
+    fun delete(data: T): Boolean {
         if (head == null) return false
         if (head?.data == data) {
             head = head?.next

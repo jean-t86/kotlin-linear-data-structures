@@ -157,7 +157,7 @@ class LinkedListTest {
     fun `deleteWithValue on empty LinkedList`() {
         val linkedList = LinkedList<Int>()
 
-        val actual = linkedList.deleteWithValue(20)
+        val actual = linkedList.delete(20)
 
         assertEquals(false, actual)
     }
@@ -166,7 +166,7 @@ class LinkedListTest {
     fun `deleteWithValue on LinkedList with one item`() {
         val linkedList = LinkedList(40)
 
-        val actual = linkedList.deleteWithValue(40)
+        val actual = linkedList.delete(40)
 
         assertEquals(true, actual)
     }
@@ -183,12 +183,12 @@ class LinkedListTest {
         assertEquals("<head> A B C D E F <tail>", linkedList.toString())
         assertEquals(6, linkedList.size)
 
-        linkedList.deleteWithValue('C')
-        linkedList.deleteWithValue('E')
+        linkedList.delete('C')
+        linkedList.delete('E')
 
         assertEquals("<head> A B D F <tail>", linkedList.toString())
         assertEquals(4, linkedList.size)
     }
 
-    
+
 }
