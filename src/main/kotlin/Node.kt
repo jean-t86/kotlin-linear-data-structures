@@ -1,1 +1,1 @@
-data class Node<T>(val value: T, var next: Node<T>? = null)
+data class Node<T>(val data: T, var next: Node<T>? = null)

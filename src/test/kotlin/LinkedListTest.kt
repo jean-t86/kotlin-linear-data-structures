@@ -26,7 +26,7 @@ class LinkedListTest {
 
         assertEquals(0, linkedList.size)
 
-        linkedList.addToHead(14)
+        linkedList.prepend(14)
         assertEquals(1, linkedList.size)
     }
 
@@ -51,7 +51,7 @@ class LinkedListTest {
         val linkedList = LinkedList<Int>()
 
         assertEquals(null, linkedList.head)
-        linkedList.addToTail(24)
+        linkedList.append(24)
 
         assertEquals(tail, linkedList.head)
     }
@@ -61,16 +61,16 @@ class LinkedListTest {
         val linkedList = LinkedList('A')
         assertEquals(1, linkedList.size)
 
-        linkedList.addToTail('Z')
+        linkedList.append('Z')
         assertEquals(2, linkedList.size)
     }
 
     @Test
     fun `setTail with list having two items should have size 3`() {
         val linkedList = LinkedList('B')
-        linkedList.addToHead('B')
+        linkedList.prepend('B')
 
-        linkedList.addToTail('Z')
+        linkedList.append('Z')
 
         assertEquals(3, linkedList.size)
     }
@@ -79,7 +79,7 @@ class LinkedListTest {
     fun `removeHead on an empty LinkedList`() {
         val linkedList = LinkedList<Int>()
 
-        val actual = linkedList.removeHead()
+        val actual = linkedList.deleteHead()
 
         assertEquals(null, actual)
         assertEquals(0, linkedList.size)
@@ -93,7 +93,7 @@ class LinkedListTest {
         assertEquals(head, Node('A'))
         assertEquals(1, linkedList.size)
 
-        linkedList.removeHead()
+        linkedList.deleteHead()
         head = linkedList.head
         assertEquals(null, head)
         assertEquals(0, linkedList.size)
@@ -105,7 +105,7 @@ class LinkedListTest {
 
         assertEquals(1, linkedList.size)
 
-        val actual = linkedList.removeHead()
+        val actual = linkedList.deleteHead()
 
         assertEquals('A', actual)
         assertEquals(0, linkedList.size)
@@ -115,7 +115,7 @@ class LinkedListTest {
     fun `removeHead in a LinkedList with only one node should have head null`() {
         val linkedList = LinkedList('A')
 
-        val actual = linkedList.removeHead()
+        val actual = linkedList.deleteHead()
 
         assertEquals('A', actual)
         assertEquals(null, linkedList.head)
@@ -125,9 +125,9 @@ class LinkedListTest {
     @Test
     fun `removeHead in a LinkedList with two nodes should properly relink nodes`() {
         val linkedList = LinkedList('A')
-        linkedList.addToHead('B')
+        linkedList.prepend('B')
 
-        val actual = linkedList.removeHead()
+        val actual = linkedList.deleteHead()
 
         assertEquals('B',actual)
         assertEquals(1, linkedList.size)
@@ -145,11 +145,50 @@ class LinkedListTest {
     @Test
     fun `getPrintableList returns correct string`() {
         val linkedList = LinkedList('C')
-        linkedList.addToHead('B')
-        linkedList.addToHead('A')
+        linkedList.prepend('B')
+        linkedList.prepend('A')
 
         val actual = linkedList.toString()
 
         assertEquals("<head> A B C <tail>", actual)
     }
+
+    @Test
+    fun `deleteWithValue on empty LinkedList`() {
+        val linkedList = LinkedList<Int>()
+
+        val actual = linkedList.deleteWithValue(20)
+
+        assertEquals(false, actual)
+    }
+
+    @Test
+    fun `deleteWithValue on LinkedList with one item`() {
+        val linkedList = LinkedList(40)
+
+        val actual = linkedList.deleteWithValue(40)
+
+        assertEquals(true, actual)
+    }
+
+    @Test
+    fun `deleteWithValue on LinkedList with multiple values`() {
+        val linkedList = LinkedList('A')
+        linkedList.append('B')
+        linkedList.append('C')
+        linkedList.append('D')
+        linkedList.append('E')
+        linkedList.append('F')
+
+        assertEquals("<head> A B C D E F <tail>", linkedList.toString())
+        assertEquals(6, linkedList.size)
+
+        linkedList.deleteWithValue('C')
+        linkedList.deleteWithValue('E')
+
+        assertEquals("<head> A B D F <tail>", linkedList.toString())
+        assertEquals(4, linkedList.size)
+    }
+
+    
 }
