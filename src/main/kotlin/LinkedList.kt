@@ -75,13 +75,4 @@ class LinkedList<T>(data: T? = null) {
         output += "<tail>"
         return output
     }
-
-    /*
-    Create a few nodes and add them to both ends of a new linked list
-    Print your linked list out using your .printList() method
-    Use console.log() on your list to see how it’s different from your .printList() method
-    Remove your linked list’s head node
-    Print your list again — was your original head node removed?
-    So far you’ve built a method to remove the head of the list. How do you think you would remove a node that has a specific data? Try building a method to do that!
-     */
 }
