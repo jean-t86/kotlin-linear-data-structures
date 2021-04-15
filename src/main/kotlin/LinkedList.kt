@@ -11,8 +11,7 @@ class LinkedList<T>(data: T? = null) {
 
     init {
         if (data != null) {
-            head = Node(data)
-            size++
+            prepend(data)
         }
     }
 
@@ -27,15 +26,16 @@ class LinkedList<T>(data: T? = null) {
     }
 
     fun append(data: T) {
-        var tail = head
-        if (tail == null) {
-            head = Node(data)
-        } else {
-            while (tail?.next != null) {
-                tail = tail.next
-            }
-            tail?.next = Node(data)
+        val newNode = Node(data)
+
+        if (head == null) {
+            head = newNode
+            tail = newNode
+            return
         }
+
+        tail?.next = newNode
+        tail = newNode
         size++
     }
 
